@@ -1,0 +1,4 @@
+rootProject.name = 'utils-spring'
+
+include ':clean-core-full'
+project(':clean-core-full').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\clean-core-full" as File
