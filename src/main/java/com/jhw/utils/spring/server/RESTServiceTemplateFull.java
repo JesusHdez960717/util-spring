@@ -18,10 +18,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class RESTServiceTemplateFull<T> implements CRUDUseCase<T> {
 
-    protected final CRUDUseCase<T> uc;
+    protected CRUDUseCase<T> uc;
 
-    public RESTServiceTemplateFull(CRUDUseCase<T> cleanUC) {
-        this.uc = cleanUC;
+    protected RESTServiceTemplateFull() {
+    }
+
+    public void setUseCase(CRUDUseCase<T> uc) {
+        this.uc = uc;
     }
 
     @Override
