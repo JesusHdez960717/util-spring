@@ -5,6 +5,7 @@
  */
 package com.jhw.utils.spring.server;
 
+import com.clean.core.app.usecase.CRUDLightweightUseCase;
 import com.clean.core.app.usecase.CRUDUseCase;
 import java.beans.PropertyChangeListener;
 import java.util.List;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  * @param <T>
  */
 @RestController
-public class RESTServiceTemplateFull<T> implements CRUDUseCase<T> {
+public class RESTServiceTemplateFull<T> implements CRUDLightweightUseCase<T> {
 
     protected CRUDUseCase<T> uc;
 
@@ -28,43 +29,67 @@ public class RESTServiceTemplateFull<T> implements CRUDUseCase<T> {
     }
 
     @Override
-    @PostMapping(RESTUrlConstants.PATH_TRABAJO_CREATE)
+    @PostMapping(path = RESTUrlConstants.CREATE_PATH)
     public T create(@RequestBody T t) throws Exception {
         return uc.create(t);
     }
 
     @Override
-    @GetMapping(RESTUrlConstants.PATH_TRABAJO_FIND_ALL)
-    public List<T> findAll() throws Exception {
-        return uc.findAll();
+    @PutMapping(path = RESTUrlConstants.CREATE_PATH_LIGHTWEIGHT)
+    public void create_ligth(@RequestBody T newObject) throws Exception {
+        CRUDLightweightUseCase.super.create_ligth(newObject);
     }
 
     @Override
-    @PostMapping(RESTUrlConstants.PATH_TRABAJO_EDIT)
+    @PostMapping(RESTUrlConstants.EDIT_PATH)
     public T edit(@RequestBody T t) throws Exception {
         return uc.edit(t);
     }
 
     @Override
-    @PostMapping(RESTUrlConstants.PATH_TRABAJO_DESTROY)
+    @PutMapping(RESTUrlConstants.EDIT_PATH_LIGHTWEIGHT)
+    public void edit_ligth(T objectToUpdate) throws Exception {
+        CRUDLightweightUseCase.super.edit_ligth(objectToUpdate);
+    }
+
+    @Override
+    @PostMapping(RESTUrlConstants.DESTROY_PATH)
     public T destroy(@RequestBody T t) throws Exception {
         return uc.destroy(t);
     }
 
     @Override
-    @PostMapping(RESTUrlConstants.PATH_TRABAJO_DESTROY_ID)
+    @DeleteMapping(RESTUrlConstants.DESTROY_PATH_LIGHTWEIGHT)
+    public void destroy_ligth(T objectToDestroy) throws Exception {
+        CRUDLightweightUseCase.super.destroy_ligth(objectToDestroy);
+    }
+
+    @Override
+    @PostMapping(RESTUrlConstants.DESTROY_ID_PATH)
     public T destroyById(@RequestBody Object id) throws Exception {
         return uc.destroyById(id);
     }
 
     @Override
-    @GetMapping(RESTUrlConstants.PATH_TRABAJO_FIND_BY)
+    @DeleteMapping(RESTUrlConstants.DESTROY_ID_PATH)
+    public void destroyById_ligth(Object keyId) throws Exception {
+        CRUDLightweightUseCase.super.destroyById_ligth(keyId);
+    }
+
+    @Override
+    @GetMapping(RESTUrlConstants.FIND_ALL_PATH)
+    public List<T> findAll() throws Exception {
+        return uc.findAll();
+    }
+
+    @Override
+    @GetMapping(RESTUrlConstants.FIND_BY_PATH)
     public T findBy(@PathVariable("id") Object id) throws Exception {
         return uc.findBy(Integer.parseInt(id.toString()));
     }
 
     @Override
-    @GetMapping(RESTUrlConstants.PATH_TRABAJO_COUNT)
+    @GetMapping(RESTUrlConstants.COUNT_PATH)
     public int count() throws Exception {
         return uc.count();
     }
