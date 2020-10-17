@@ -6,6 +6,7 @@
 package com.jhw.utils.spring.client;
 
 import com.clean.core.app.repo.CRUDRepository;
+import com.clean.core.app.usecase.CRUDUseCase;
 import com.jhw.utils.spring.server.RESTUrlConstants;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
@@ -21,7 +22,7 @@ import org.springframework.web.client.RestTemplate;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  * @param <Domain>
  */
-public class ConsumerRepoTemplate<Domain> implements CRUDRepository<Domain> {
+public class ConsumerRepoTemplate<Domain> implements CRUDRepository<Domain>, CRUDUseCase<Domain> {
 
     protected final RestTemplate template;
     protected final Class<? extends Domain> clazz;
@@ -35,42 +36,44 @@ public class ConsumerRepoTemplate<Domain> implements CRUDRepository<Domain> {
 
     @Override
     public Domain create(Domain newObject) throws Exception {
-        return template.postForObject(urlGeneral + RESTUrlConstants.PATH_TRABAJO_CREATE, newObject, clazz);
+        return template.postForObject(urlGeneral + RESTUrlConstants.CREATE_PATH, newObject, clazz);
     }
 
     @Override
     public Domain edit(Domain objectToEdit) throws Exception {
-        return template.postForObject(urlGeneral + RESTUrlConstants.PATH_TRABAJO_EDIT, objectToEdit, clazz);
+        return template.postForObject(urlGeneral + RESTUrlConstants.EDIT_PATH, objectToEdit, clazz);
     }
 
     @Override
     public Domain destroy(Domain objectToDestroy) throws Exception {
-        return template.postForObject(urlGeneral + RESTUrlConstants.PATH_TRABAJO_DESTROY, objectToDestroy, clazz);
+        return template.postForObject(urlGeneral + RESTUrlConstants.DESTROY_PATH, objectToDestroy, clazz);
     }
 
     @Override
     public Domain destroyById(Object keyId) throws Exception {
-        return template.postForObject(urlGeneral + RESTUrlConstants.PATH_TRABAJO_DESTROY_ID, keyId, clazz);
+        return template.postForObject(urlGeneral + RESTUrlConstants.DESTROY_ID_PATH, keyId, clazz);
     }
 
     @Override
     public Domain findBy(Object keyId) throws Exception {
         Map<String, Object> map = new HashMap<>();
-        map.put("id", keyId);
-        return template.getForObject(urlGeneral + RESTUrlConstants.PATH_TRABAJO_FIND_BY, clazz, map);
+        map.put(RESTUrlConstants.ID, keyId);
+        return template.getForObject(urlGeneral + RESTUrlConstants.FIND_BY_PATH, clazz, map);
     }
 
     @Override
     public List<Domain> findAll() throws Exception {
         ParameterizedTypeReference<List<Domain>> type = new ParameterizedTypeReference<List<Domain>>() {
         };
-        ResponseEntity<List<Domain>> response = template.exchange(urlGeneral + RESTUrlConstants.PATH_TRABAJO_FIND_ALL, HttpMethod.GET, null, type);
+        ResponseEntity<List<Domain>> response = template.exchange(urlGeneral + RESTUrlConstants.FIND_ALL_PATH, HttpMethod.GET, null, type);
         return response.getBody();
+        //return RestTemplateUtils.getForList(template, urlGeneral + RESTUrlConstants.FIND_ALL_PATH, clazz);
+        //return RestTemplateUtils.getForList(template, urlGeneral + RESTUrlConstants.FIND_ALL_PATH, clazz);
     }
 
     @Override
     public int count() throws Exception {
-        return template.getForObject(urlGeneral + RESTUrlConstants.PATH_TRABAJO_COUNT, Integer.class);
+        return template.getForObject(urlGeneral + RESTUrlConstants.COUNT_PATH, Integer.class);
     }
 
     @Override
