@@ -12,9 +12,6 @@ import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -63,12 +60,7 @@ public class ConsumerRepoTemplate<Domain> implements CRUDRepository<Domain>, CRU
 
     @Override
     public List<Domain> findAll() throws Exception {
-        ParameterizedTypeReference<List<Domain>> type = new ParameterizedTypeReference<List<Domain>>() {
-        };
-        ResponseEntity<List<Domain>> response = template.exchange(urlGeneral + RESTUrlConstants.FIND_ALL_PATH, HttpMethod.GET, null, type);
-        return response.getBody();
-        //return RestTemplateUtils.getForList(template, urlGeneral + RESTUrlConstants.FIND_ALL_PATH, clazz);
-        //return RestTemplateUtils.getForList(template, urlGeneral + RESTUrlConstants.FIND_ALL_PATH, clazz);
+        return (List<Domain>) RestTemplateUtils.getForList(template, urlGeneral + RESTUrlConstants.FIND_ALL_PATH, clazz);
     }
 
     @Override
