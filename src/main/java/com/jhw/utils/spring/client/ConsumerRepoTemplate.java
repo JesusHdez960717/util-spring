@@ -12,7 +12,7 @@ import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestOperations;
 
 /**
  *
@@ -21,11 +21,11 @@ import org.springframework.web.client.RestTemplate;
  */
 public class ConsumerRepoTemplate<Domain> implements CRUDRepository<Domain>, CRUDUseCase<Domain> {
 
-    protected final RestTemplate template;
+    protected final RestOperations template;
     protected final Class<? extends Domain> clazz;
     protected final String urlGeneral;
 
-    public ConsumerRepoTemplate(RestTemplate template, Class<? extends Domain> clazz, String urlGeneral) {
+    public ConsumerRepoTemplate(RestOperations template, Class<? extends Domain> clazz, String urlGeneral) {
         this.template = template;
         this.clazz = clazz;
         this.urlGeneral = urlGeneral;
