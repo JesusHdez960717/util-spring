@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
  */
 public class RestTemplateUtils {
 
+    //----------------------------------- LIST -----------------------------------\\
     public static <T> List<T> getForList(RestTemplate template, String url, Class<T> clazz) throws Exception {
         return getForList(template, url, new HashMap<>(), clazz);
     }
@@ -43,5 +44,32 @@ public class RestTemplateUtils {
 
         //como es tipo <T> lo que lee es linkedHashMap, hay que castearlo de nuevo al objeto como tal
         return ConverterService.convert(response.getBody(), clazz);
+    }
+
+    //----------------------------------- MAP -----------------------------------\\
+    public static <V, K> Map<V, K> postForMap(RestTemplate template, String url, Class<V> clazzV, Class<K> clazzK) throws Exception {
+        return postForMap(template, url, new HashMap<>(), clazzV, clazzK);
+    }
+
+    public static <V, K> Map<V, K> postForMap(RestTemplate template, String url, Map<String, Object> uriVariables, Class<V> clazzV, Class<K> clazzK) throws Exception {
+        return objectForMap(template, url, HttpMethod.POST, uriVariables, clazzV, clazzK);
+    }
+
+    public static <V, K> Map<V, K> getForMap(RestTemplate template, String url, Class<V> clazzV, Class<K> clazzK) throws Exception {
+        return getForMap(template, url, new HashMap<>(), clazzV, clazzK);
+    }
+
+    public static <V, K> Map<V, K> getForMap(RestTemplate template, String url, Map<String, Object> uriVariables, Class<V> clazzV, Class<K> clazzK) throws Exception {
+        return objectForMap(template, url, HttpMethod.GET, uriVariables, clazzV, clazzK);
+    }
+
+    public static <V, K> Map<V, K> objectForMap(RestTemplate template, String url, HttpMethod method, Map<String, Object> uriVariables, Class<V> clazzV, Class<K> clazzK) throws Exception {
+        ParameterizedTypeReference<Map<V, K>> type = new ParameterizedTypeReference<Map<V, K>>() {
+        };
+        ResponseEntity<Map<V, K>> response = template.exchange(url, method, null, type, uriVariables);
+
+        //como es tipo <T> lo que lee es linkedHashMap, hay que castearlo de nuevo al objeto como tal
+        //return ConverterService.convert(response.getBody(), clazz);
+        return response.getBody();
     }
 }
