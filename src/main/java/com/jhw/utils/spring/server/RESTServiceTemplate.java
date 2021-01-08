@@ -5,7 +5,7 @@
  */
 package com.jhw.utils.spring.server;
 
-import com.clean.core.app.usecase.CRUDUseCase;
+import com.root101.clean.core.app.usecase.CRUDUseCase;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 import org.springframework.web.bind.annotation.*;

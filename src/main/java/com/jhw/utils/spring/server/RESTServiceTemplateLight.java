@@ -5,7 +5,7 @@
  */
 package com.jhw.utils.spring.server;
 
-import com.clean.core.app.usecase.CRUDLightweightUseCase;
+import com.root101.clean.core.app.usecase.CRUDLightweightUseCase;
 import org.springframework.web.bind.annotation.*;
 
 /**

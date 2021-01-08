@@ -5,8 +5,8 @@
  */
 package com.jhw.utils.spring.client;
 
-import com.clean.core.app.repo.CRUDLightweightRepo;
-import com.clean.core.app.usecase.CRUDLightweightUseCase;
+import com.root101.clean.core.app.repo.CRUDLightweightRepo;
+import com.root101.clean.core.app.usecase.CRUDLightweightUseCase;
 import com.jhw.utils.spring.server.RESTUrlConstants;
 
 /**

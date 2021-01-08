@@ -5,8 +5,8 @@
  */
 package com.jhw.utils.spring.client;
 
-import com.clean.core.app.repo.CRUDRepository;
-import com.clean.core.app.usecase.CRUDUseCase;
+import com.root101.clean.core.app.repo.CRUDRepository;
+import com.root101.clean.core.app.usecase.CRUDUseCase;
 import com.jhw.utils.spring.server.RESTUrlConstants;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
