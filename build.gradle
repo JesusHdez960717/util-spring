@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.root101.utils'
+group = 'com.root101.spring'
 
 version = '1.9.9.SNAPSHOT.20210108'
 
