@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jhw.utils.spring.client;
+package com.root101.utils.spring.client;
 
 import com.root101.clean.core.app.repo.CRUDRepository;
 import com.root101.clean.core.app.usecase.CRUDUseCase;
-import com.jhw.utils.spring.server.RESTUrlConstants;
+import com.root101.utils.spring.server.RESTUrlConstants;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.List;
