@@ -43,39 +43,39 @@ public abstract class ConsumerRepoTemplate<Domain> implements CRUDRepository<Dom
     protected abstract RestOperations template();
 
     @Override
-    public Domain create(Domain newObject) throws Exception {
+    public Domain create(Domain newObject) throws RuntimeException {
         return template().postForObject(urlGeneral + RESTUrlConstants.CREATE_PATH, newObject, clazz);
     }
 
     @Override
-    public Domain edit(Domain objectToEdit) throws Exception {
+    public Domain edit(Domain objectToEdit) throws RuntimeException {
         return template().postForObject(urlGeneral + RESTUrlConstants.EDIT_PATH, objectToEdit, clazz);
     }
 
     @Override
-    public Domain destroy(Domain objectToDestroy) throws Exception {
+    public Domain destroy(Domain objectToDestroy) throws RuntimeException {
         return template().postForObject(urlGeneral + RESTUrlConstants.DESTROY_PATH, objectToDestroy, clazz);
     }
 
     @Override
-    public Domain destroyById(Object keyId) throws Exception {
+    public Domain destroyById(Object keyId) throws RuntimeException {
         return template().postForObject(urlGeneral + RESTUrlConstants.DESTROY_ID_PATH, keyId, clazz);
     }
 
     @Override
-    public Domain findBy(Object keyId) throws Exception {
+    public Domain findBy(Object keyId) throws RuntimeException {
         Map<String, Object> map = new HashMap<>();
         map.put(RESTUrlConstants.ID, keyId);
         return template().getForObject(urlGeneral + RESTUrlConstants.FIND_BY_PATH, clazz, map);
     }
 
     @Override
-    public List<Domain> findAll() throws Exception {
+    public List<Domain> findAll() throws RuntimeException {
         return (List<Domain>) RestTemplateUtils.getForList(template(), urlGeneral + RESTUrlConstants.FIND_ALL_PATH, clazz);
     }
 
     @Override
-    public int count() throws Exception {
+    public int count() throws RuntimeException {
         return template().getForObject(urlGeneral + RESTUrlConstants.COUNT_PATH, Integer.class);
     }
 

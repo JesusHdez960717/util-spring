@@ -40,43 +40,43 @@ public class RESTServiceTemplate<T> implements CRUDUseCase<T> {
 
     @Override
     @PostMapping(path = RESTUrlConstants.CREATE_PATH)
-    public T create(@RequestBody T t) throws Exception {
+    public T create(@RequestBody T t) throws RuntimeException {
         return uc.create(t);
     }
 
     @Override
     @PostMapping(RESTUrlConstants.EDIT_PATH)
-    public T edit(@RequestBody T t) throws Exception {
+    public T edit(@RequestBody T t) throws RuntimeException {
         return uc.edit(t);
     }
 
     @Override
     @PostMapping(RESTUrlConstants.DESTROY_PATH)
-    public T destroy(@RequestBody T t) throws Exception {
+    public T destroy(@RequestBody T t) throws RuntimeException {
         return uc.destroy(t);
     }
 
     @Override
     @PostMapping(RESTUrlConstants.DESTROY_ID_PATH)
-    public T destroyById(@RequestBody Object id) throws Exception {
+    public T destroyById(@RequestBody Object id) throws RuntimeException {
         return uc.destroyById(id);
     }
 
     @Override
     @GetMapping(RESTUrlConstants.FIND_ALL_PATH)
-    public List<T> findAll() throws Exception {
+    public List<T> findAll() throws RuntimeException {
         return uc.findAll();
     }
 
     @Override
     @GetMapping(RESTUrlConstants.FIND_BY_PATH)
-    public T findBy(@PathVariable(RESTUrlConstants.ID) Object id) throws Exception {
+    public T findBy(@PathVariable(RESTUrlConstants.ID) Object id) throws RuntimeException {
         return uc.findBy(Integer.parseInt(id.toString()));
     }
 
     @Override
     @GetMapping(RESTUrlConstants.COUNT_PATH)
-    public int count() throws Exception {
+    public int count() throws RuntimeException {
         return uc.count();
     }
 
