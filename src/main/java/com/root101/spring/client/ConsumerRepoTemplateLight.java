@@ -33,24 +33,24 @@ public abstract class ConsumerRepoTemplateLight<Domain> extends ConsumerRepoTemp
     }
 
     @Override
-    public void create_light(Domain newObject) throws Exception {
+    public void create_light(Domain newObject) throws RuntimeException {
         template().put(urlGeneral + RESTUrlConstants.CREATE_PATH_LIGHTWEIGHT, newObject);
     }
 
     @Override
-    public void edit_light(Domain objectToUpdate) throws Exception {
+    public void edit_light(Domain objectToUpdate) throws RuntimeException {
         template().put(urlGeneral + RESTUrlConstants.EDIT_PATH_LIGHTWEIGHT, objectToUpdate);
     }
 
     @Override
     @Deprecated
-    public void destroy_light(Domain objectToDestroy) throws Exception {
+    public void destroy_light(Domain objectToDestroy) throws RuntimeException {
         template().delete(urlGeneral + RESTUrlConstants.DESTROY_PATH, objectToDestroy);
     }
 
     @Override
     @Deprecated
-    public void destroyById_light(Object keyId) throws Exception {
+    public void destroyById_light(Object keyId) throws RuntimeException {
         template().delete(urlGeneral + RESTUrlConstants.DESTROY_ID_PATH, keyId);
     }
 

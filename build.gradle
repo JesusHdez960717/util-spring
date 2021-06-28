@@ -4,7 +4,7 @@ plugins {
 
 group = 'com.root101.spring'
 
-version = '2.0.0.SNAPSHOT.20210109'
+version = '3.0.0.SNAPSHOT.20210627'
 
 repositories {
     jcenter()
@@ -12,12 +12,9 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.springframework', name: 'spring-web', version: '5.2.9.RELEASE'
-    compile group: 'org.springframework', name: 'spring-context', version: '5.2.9.RELEASE'
-    
-    testCompile 'junit:junit:4.13'
-    
+    implementation 'org.springframework:spring-web:5.2.9.RELEASE'
+    implementation 'org.springframework:spring-context:5.2.9.RELEASE'
+       
     implementation project(':clean-core')
     implementation project(':utils-core')
-
 }

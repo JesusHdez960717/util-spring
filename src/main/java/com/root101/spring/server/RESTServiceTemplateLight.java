@@ -40,27 +40,27 @@ public class RESTServiceTemplateLight<T> extends RESTServiceTemplate<T> implemen
 
     @Override
     @PutMapping(path = RESTUrlConstants.CREATE_PATH_LIGHTWEIGHT)
-    public void create_light(@RequestBody T newObject) throws Exception {
+    public void create_light(@RequestBody T newObject) throws RuntimeException {
         lightUC.create_light(newObject);
     }
 
     @Override
     @PutMapping(RESTUrlConstants.EDIT_PATH_LIGHTWEIGHT)
-    public void edit_light(@RequestBody T objectToUpdate) throws Exception {
+    public void edit_light(@RequestBody T objectToUpdate) throws RuntimeException {
         lightUC.edit_light(objectToUpdate);
     }
 
     @Override
     @DeleteMapping(RESTUrlConstants.DESTROY_PATH_LIGHTWEIGHT)
     @Deprecated
-    public void destroy_light(@RequestBody T objectToDestroy) throws Exception {
+    public void destroy_light(@RequestBody T objectToDestroy) throws RuntimeException {
         lightUC.destroy_light(objectToDestroy);
     }
 
     @Override
     @DeleteMapping(RESTUrlConstants.DESTROY_ID_PATH)
     @Deprecated
-    public void destroyById_light(Object keyId) throws Exception {
+    public void destroyById_light(Object keyId) throws RuntimeException {
         lightUC.destroyById_light(keyId);
     }
 
