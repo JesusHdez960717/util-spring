@@ -28,30 +28,14 @@ public class RESTUrlConstants {
     public static final String CREATE_PATH = "/create";
     public static final RequestMethod CREATE_METHOD = RequestMethod.POST;
 
-    public static final String CREATE_PATH_LIGHTWEIGHT = "/create_light";
-    public static final RequestMethod CREATE_LIGHTWEIGHT_METHOD = RequestMethod.PUT;
-
     public static final String EDIT_PATH = "/edit";
     public static final RequestMethod EDIT_METHOD = RequestMethod.POST;
-
-    public static final String EDIT_PATH_LIGHTWEIGHT = "/edit_light";
-    public static final RequestMethod EDIT_LIGHTWEIGHT_METHOD = RequestMethod.PUT;
 
     public static final String DESTROY_PATH = "/destroy";
     public static final RequestMethod DESTROY_METHOD = RequestMethod.POST;
 
-    @Deprecated
-    public static final String DESTROY_PATH_LIGHTWEIGHT = "/destroy_light";
-    @Deprecated
-    public static final RequestMethod DESTROY_LIGHTWEIGHT_METHOD = RequestMethod.DELETE;
-
     public static final String DESTROY_ID_PATH = "/destroy_id";
     public static final RequestMethod DESTROY_ID_METHOD = RequestMethod.POST;
-
-    @Deprecated
-    public static final String DESTROY_ID_LIGHTWEIGHT_PATH = "/destroy_id";
-    @Deprecated
-    public static final RequestMethod DESTROY_ID_LIGHTWEIGHT_METHOD = RequestMethod.DELETE;
 
     public static final String FIND_ALL_PATH = "/find_all";
     public static final RequestMethod DFIND_ALL_METHOD = RequestMethod.GET;
