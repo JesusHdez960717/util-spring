@@ -23,6 +23,7 @@ import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 import org.springframework.web.client.RestOperations;
 
 /**
@@ -34,13 +35,34 @@ public abstract class ConsumerRepoTemplate<Domain> implements CRUDRepository<Dom
 
     protected final Class<? extends Domain> clazz;
     protected final String urlGeneral;
+    protected final Supplier<RestOperations> template;
 
-    public ConsumerRepoTemplate(Class<? extends Domain> clazz, String urlGeneral) {
+    public ConsumerRepoTemplate(Class<? extends Domain> clazz, String urlGeneral, Supplier<RestOperations> template) {
         this.clazz = clazz;
         this.urlGeneral = urlGeneral;
+        this.template = template;
     }
 
-    protected abstract RestOperations template();
+    /**
+     * Si se crea con este constructor simpre va a devolver el mismo
+     * RestOperations, y si este cambia en Runtime las instancias de esta clase
+     * ya creadas van a seguir usando el RestOperations viejo.
+     *
+     * @param clazz
+     * @param urlGeneral
+     * @param template
+     * @deprecated
+     */
+    @Deprecated
+    public ConsumerRepoTemplate(Class<? extends Domain> clazz, String urlGeneral, RestOperations template) {
+        this.clazz = clazz;
+        this.urlGeneral = urlGeneral;
+        this.template = () -> template;
+    }
+
+    protected RestOperations template() {
+        return template.get();
+    }
 
     @Override
     public Domain create(Domain newObject) throws RuntimeException {
