@@ -16,8 +16,7 @@
  */
 package com.root101.spring.client;
 
-import com.root101.clean.core.app.repo.CRUDRepository;
-import com.root101.clean.core.app.usecase.CRUDUseCase;
+import com.root101.clean.core.app.rest.CRUDRestService;
 import com.root101.spring.server.RESTUrlConstants;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
@@ -31,7 +30,7 @@ import org.springframework.web.client.RestOperations;
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */
-public abstract class ConsumerRepoTemplate<Domain> implements CRUDRepository<Domain>, CRUDUseCase<Domain> {
+public abstract class ConsumerRepoTemplate<Domain> implements CRUDRestService<Domain> {
 
     protected final Class<? extends Domain> clazz;
     protected final String urlGeneral;
