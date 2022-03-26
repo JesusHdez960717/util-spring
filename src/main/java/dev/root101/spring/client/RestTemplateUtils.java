@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.root101.spring.client;
+package dev.root101.spring.client;
 
 import com.root101.clean.core.app.services.ConverterHandler;
 import java.util.HashMap;

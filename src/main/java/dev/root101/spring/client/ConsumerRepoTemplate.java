@@ -14,10 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.root101.spring.client;
+package dev.root101.spring.client;
 
 import com.root101.clean.core.app.repo.CRUDRepositoryConsume;
-import com.root101.spring.server.RESTUrlConstants;
+import dev.root101.spring.server.RESTUrlConstants;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.List;
