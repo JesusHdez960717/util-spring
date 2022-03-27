@@ -1,7 +1,7 @@
 rootProject.name = 'utils-spring'
 
 include ':clean-core'
-project(':clean-core').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\clean-core" as File
+project(':clean-core').projectDir = "D:\\Programing\\Java\\Projects\\clean-core" as File
 
 include ':utils-core'
-project(':utils-core').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\utils-core" as File
+project(':utils-core').projectDir = "D:\\Programing\\Java\\Projects\\utils-core" as File
