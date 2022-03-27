@@ -16,7 +16,7 @@
  */
 package dev.root101.spring.client;
 
-import dev.root101.clean.core.app.repo.CRUDRepositoryConsume;
+import dev.root101.clean.core.repo.external_repo.CRUDExternalRepository;
 import dev.root101.spring.server.RESTUrlConstants;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
@@ -29,34 +29,18 @@ import org.springframework.web.client.RestOperations;
  *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
+ * @param <Entity>
  */
-public abstract class ConsumerRepoTemplate<Domain> implements CRUDRepositoryConsume<Domain> {
+public abstract class ConsumerRepoTemplate<Entity> implements CRUDExternalRepository<Entity> {
 
-    protected final Class<? extends Domain> clazz;
+    protected final Class<? extends Entity> clazz;
     protected final String urlGeneral;
     protected final Supplier<RestOperations> template;
 
-    public ConsumerRepoTemplate(Class<? extends Domain> clazz, String urlGeneral, Supplier<RestOperations> template) {
+    public ConsumerRepoTemplate(Class<? extends Entity> clazz, String urlGeneral, Supplier<RestOperations> template) {
         this.clazz = clazz;
         this.urlGeneral = urlGeneral;
         this.template = template;
-    }
-
-    /**
-     * Si se crea con este constructor simpre va a devolver el mismo
-     * RestOperations, y si este cambia en Runtime las instancias de esta clase
-     * ya creadas van a seguir usando el RestOperations viejo.
-     *
-     * @param clazz
-     * @param urlGeneral
-     * @param template
-     * @deprecated
-     */
-    @Deprecated
-    public ConsumerRepoTemplate(Class<? extends Domain> clazz, String urlGeneral, RestOperations template) {
-        this.clazz = clazz;
-        this.urlGeneral = urlGeneral;
-        this.template = () -> template;
     }
 
     protected RestOperations template() {
@@ -64,50 +48,40 @@ public abstract class ConsumerRepoTemplate<Domain> implements CRUDRepositoryCons
     }
 
     @Override
-    public Domain create(Domain newObject) throws RuntimeException {
+    public Entity create(Entity newObject) throws RuntimeException {
         return template().postForObject(urlGeneral + RESTUrlConstants.CREATE_PATH, newObject, clazz);
     }
 
     @Override
-    public Domain edit(Domain objectToEdit) throws RuntimeException {
+    public Entity edit(Entity objectToEdit) throws RuntimeException {
         return template().postForObject(urlGeneral + RESTUrlConstants.EDIT_PATH, objectToEdit, clazz);
     }
 
     @Override
-    public Domain destroy(Domain objectToDestroy) throws RuntimeException {
+    public Entity destroy(Entity objectToDestroy) throws RuntimeException {
         return template().postForObject(urlGeneral + RESTUrlConstants.DESTROY_PATH, objectToDestroy, clazz);
     }
 
     @Override
-    public Domain destroyById(Object keyId) throws RuntimeException {
+    public Entity destroyById(Object keyId) throws RuntimeException {
         return template().postForObject(urlGeneral + RESTUrlConstants.DESTROY_ID_PATH, keyId, clazz);
     }
 
     @Override
-    public Domain findBy(Object keyId) throws RuntimeException {
+    public Entity findBy(Object keyId) throws RuntimeException {
         Map<String, Object> map = new HashMap<>();
         map.put(RESTUrlConstants.ID, keyId);
         return template().getForObject(urlGeneral + RESTUrlConstants.FIND_BY_PATH, clazz, map);
     }
 
     @Override
-    public List<Domain> findAll() throws RuntimeException {
-        return (List<Domain>) RestTemplateUtils.getForList(template(), urlGeneral + RESTUrlConstants.FIND_ALL_PATH, clazz);
+    public List<Entity> findAll() throws RuntimeException {
+        return (List<Entity>) RestTemplateUtils.getForList(template(), urlGeneral + RESTUrlConstants.FIND_ALL_PATH, clazz);
     }
 
     @Override
     public int count() throws RuntimeException {
         return template().getForObject(urlGeneral + RESTUrlConstants.COUNT_PATH, Integer.class);
-    }
-
-    @Override
-    @Deprecated
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-    }
-
-    @Override
-    @Deprecated
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
     }
 
 }

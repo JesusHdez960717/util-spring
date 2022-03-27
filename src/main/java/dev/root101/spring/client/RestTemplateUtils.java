@@ -16,7 +16,7 @@
  */
 package dev.root101.spring.client;
 
-import dev.root101.clean.core.app.services.ConverterHandler;
+import dev.root101.jackson.JACKSON;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +55,11 @@ public class RestTemplateUtils {
         ResponseEntity<List<T>> response = template.exchange(url, method, null, type, uriVariables);
 
         //como es tipo <T> lo que lee es linkedHashMap, hay que castearlo de nuevo al objeto como tal
-        return ConverterHandler.convert(response.getBody(), clazz);
+        try {
+            return JACKSON.convert(response.getBody(), clazz);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //----------------------------------- MAP -----------------------------------\\
