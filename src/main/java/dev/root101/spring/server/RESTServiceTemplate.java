@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Root101 (jhernandezb96@gmail.com, +53-5-426-8660).
+ * Copyright 2022 Root101 (jhernandezb96@gmail.com, +53-5-426-8660).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
  */
 package dev.root101.spring.server;
 
-import com.root101.clean.core.app.usecase.CRUDUseCase;
+import dev.root101.clean.core.app.usecase.CRUDUseCase;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 import org.springframework.web.bind.annotation.*;
