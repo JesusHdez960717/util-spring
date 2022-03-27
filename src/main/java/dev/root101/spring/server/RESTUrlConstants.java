@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Root101 (jhernandezb96@gmail.com, +53-5-426-8660).
+ * Copyright 2022 Root101 (jhernandezb96@gmail.com, +53-5-426-8660).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.root101.spring.server;
+package dev.root101.spring.server;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 
