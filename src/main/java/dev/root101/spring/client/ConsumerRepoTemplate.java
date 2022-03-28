@@ -18,7 +18,6 @@ package dev.root101.spring.client;
 
 import dev.root101.clean.core.repo.external_repo.CRUDExternalRepository;
 import dev.root101.spring.server.RESTUrlConstants;
-import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
