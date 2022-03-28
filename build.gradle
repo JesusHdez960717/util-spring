@@ -14,6 +14,7 @@ repositories {
 dependencies {
     //spring
     implementation 'org.springframework:spring-web:5.3.17'
+    implementation 'org.springframework:spring-webmvc:5.3.17'
     implementation 'org.springframework:spring-context:5.3.17'
 
     implementation project(':clean-core')
