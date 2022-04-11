@@ -15,11 +15,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @param <ID>
  */
 public class DefaultJPARepository<Entity, ID> implements CRUDExternalRepository<Entity, ID> {
-    
+
     private final JpaRepository<Entity, ID> repo;
 
     public DefaultJPARepository(JpaRepository repo) {
         this.repo = repo;
+    }
+
+    public JpaRepository<Entity, ID> repo() {
+        return repo;
     }
 
     @Override
@@ -56,5 +60,5 @@ public class DefaultJPARepository<Entity, ID> implements CRUDExternalRepository<
     public long count() throws RuntimeException {
         return repo.count();
     }
-    
+
 }
