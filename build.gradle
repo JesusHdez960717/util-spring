@@ -17,6 +17,9 @@ dependencies {
     implementation 'org.springframework:spring-webmvc:5.3.17'
     implementation 'org.springframework:spring-context:5.3.17'
 
+    //repo
+    implementation 'org.springframework.data:spring-data-jpa:2.6.3'
+
     implementation project(':clean-core')
     implementation project(':utils-core')
 }

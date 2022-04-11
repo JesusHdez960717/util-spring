@@ -80,7 +80,7 @@ public abstract class ConsumerRepoTemplate<Entity, ID> implements CRUDExternalRe
     }
 
     @Override
-    public int count() throws RuntimeException {
+    public long count() throws RuntimeException {
         return template().getForObject(urlGeneral + RESTUrlConstants.COUNT_PATH, Integer.class);
     }
 

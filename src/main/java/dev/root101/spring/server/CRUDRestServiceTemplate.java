@@ -84,7 +84,7 @@ public class CRUDRestServiceTemplate<Domain extends DomainObject<ID>, ID, UseCas
 
     @Override
     @GetMapping(RESTUrlConstants.COUNT_PATH)
-    public int count() throws RuntimeException {
+    public long count() throws RuntimeException {
         return crudUC.count();
     }
 
