@@ -18,7 +18,6 @@ package dev.root101.spring.client;
 
 import dev.root101.clean.core.repo.external_repo.CRUDExternalRepository;
 import dev.root101.spring.server.RESTUrlConstants;
-import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +29,9 @@ import org.springframework.web.client.RestOperations;
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  * @param <Entity>
+ * @param <ID>
  */
-public abstract class ConsumerRepoTemplate<Entity> implements CRUDExternalRepository<Entity> {
+public abstract class ConsumerRepoTemplate<Entity, ID> implements CRUDExternalRepository<Entity,ID> {
 
     protected final Class<? extends Entity> clazz;
     protected final String urlGeneral;
@@ -58,17 +58,17 @@ public abstract class ConsumerRepoTemplate<Entity> implements CRUDExternalReposi
     }
 
     @Override
-    public Entity destroy(Entity objectToDestroy) throws RuntimeException {
-        return template().postForObject(urlGeneral + RESTUrlConstants.DESTROY_PATH, objectToDestroy, clazz);
+    public void destroy(Entity objectToDestroy) throws RuntimeException {
+        template().postForObject(urlGeneral + RESTUrlConstants.DESTROY_PATH, objectToDestroy, clazz);
     }
 
     @Override
-    public Entity destroyById(Object keyId) throws RuntimeException {
-        return template().postForObject(urlGeneral + RESTUrlConstants.DESTROY_ID_PATH, keyId, clazz);
+    public void destroyById(ID keyId) throws RuntimeException {
+        template().postForObject(urlGeneral + RESTUrlConstants.DESTROY_ID_PATH, keyId, clazz);
     }
 
     @Override
-    public Entity findBy(Object keyId) throws RuntimeException {
+    public Entity findBy(ID keyId) throws RuntimeException {
         Map<String, Object> map = new HashMap<>();
         map.put(RESTUrlConstants.ID, keyId);
         return template().getForObject(urlGeneral + RESTUrlConstants.FIND_BY_PATH, clazz, map);
@@ -80,7 +80,7 @@ public abstract class ConsumerRepoTemplate<Entity> implements CRUDExternalReposi
     }
 
     @Override
-    public int count() throws RuntimeException {
+    public long count() throws RuntimeException {
         return template().getForObject(urlGeneral + RESTUrlConstants.COUNT_PATH, Integer.class);
     }
 

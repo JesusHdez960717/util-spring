@@ -27,10 +27,11 @@ import org.springframework.web.bind.annotation.*;
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  * @param <Domain>
+ * @param <ID>
  * @param <UseCase>
  */
 @RestController
-public class CRUDRestServiceTemplate<Domain extends DomainObject, UseCase extends CRUDUseCase<Domain>> implements CRUDRestService<Domain> {
+public class CRUDRestServiceTemplate<Domain extends DomainObject<ID>, ID, UseCase extends CRUDUseCase<Domain,ID>> implements CRUDRestService<Domain,ID> {
 
     private final boolean doFirePropertyChanges = false;//for the momento allways enabled
     protected transient final java.beans.PropertyChangeSupport propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
@@ -59,14 +60,14 @@ public class CRUDRestServiceTemplate<Domain extends DomainObject, UseCase extend
 
     @Override
     @PostMapping(RESTUrlConstants.DESTROY_PATH)
-    public Domain destroy(@RequestBody Domain t) throws RuntimeException {
-        return crudUC.destroy(t);
+    public void destroy(@RequestBody Domain t) throws RuntimeException {
+        crudUC.destroy(t);
     }
 
     @Override
     @PostMapping(RESTUrlConstants.DESTROY_ID_PATH)
-    public Domain destroyById(@RequestBody Object id) throws RuntimeException {
-        return crudUC.destroyById(id);
+    public void destroyById(@RequestBody ID id) throws RuntimeException {
+        crudUC.destroyById(id);
     }
 
     @Override
@@ -77,13 +78,13 @@ public class CRUDRestServiceTemplate<Domain extends DomainObject, UseCase extend
 
     @Override
     @GetMapping(RESTUrlConstants.FIND_BY_PATH)
-    public Domain findBy(@PathVariable(RESTUrlConstants.ID) Object id) throws RuntimeException {
-        return crudUC.findBy(Integer.parseInt(id.toString()));
+    public Domain findBy(@PathVariable(RESTUrlConstants.ID) ID id) throws RuntimeException {
+        return crudUC.findBy(id);
     }
 
     @Override
     @GetMapping(RESTUrlConstants.COUNT_PATH)
-    public int count() throws RuntimeException {
+    public long count() throws RuntimeException {
         return crudUC.count();
     }
 

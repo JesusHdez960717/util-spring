@@ -4,7 +4,7 @@ plugins {
 
 group = 'dev.root101.spring'
 
-version = '4.0.0.SNAPSHOT.20220327'
+version = '4.1.0.SNAPSHOT.20220411'
 
 repositories {
     jcenter()
@@ -14,7 +14,11 @@ repositories {
 dependencies {
     //spring
     implementation 'org.springframework:spring-web:5.3.17'
+    implementation 'org.springframework:spring-webmvc:5.3.17'
     implementation 'org.springframework:spring-context:5.3.17'
+
+    //repo
+    implementation 'org.springframework.data:spring-data-jpa:2.6.3'
 
     implementation project(':clean-core')
     implementation project(':utils-core')
